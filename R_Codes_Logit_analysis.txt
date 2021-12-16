@@ -1,0 +1,53 @@
+ 
+Clear the console: Ctrl+Alt+L
+
+Finding the directory path
+getwd()
+
+Change home directory to the directory Data/DataAnalysis
+setwd("~/Data/Combined")
+
+Change back to the home directory
+setwd("~")
+
+Install a package
+
+install.packages("foreign")
+install.packages("pastecs")
+
+load package
+library(pastecs)
+
+Upload the file: Combined_Overall.csv
+mydata<-read.csv(file="Combined_Logit.csv",head=TRUE,sep=",");
+
+Create an output file: Combined_Overall_Result.txt
+Write the result in the txt output file:
+sink("Combined_Logit_Result.txt",append=TRUE,split=TRUE)
+To write the file back to the console: sink()
+
+
+To Force R to give the output in decimal format instead of exponential
+options("scipen"=100, "digits"=2)
+
+Descriptive Statistics
+stat.desc(data[,c("StudentsGrade","InstructorsGrade","Difference")], basic=TRUE, desc=TRUE, norm=FALSE)
+print
+
+To paste the data in Excel or CSV file, copy and paste. Then click on data and click on text To Columns.
+
+
+
+
+#Logistic Analysis: When the preditive/dependent variable is a binary variable (0,1), we can use it. We can make the behavior variable as over estimate and #under estimate with values 1 and 0 and analyze the dependence of it with other continuous or catarorical variables.
+#Independent variables: actual grades, initial preparation level, gender, semester, and so on. In this case, the actual grade is a continuous variable, #others are categorical variables so that we have to use factor(variable) to change the variable into the categorical variable. 
+ 
+Behavior<-mydata$Behavior;
+#initialprep<-mydata$InitialPreparation;
+Bender<-factor(mydata$Gender);
+Semester<-factor(mydata$Semester);
+Grade<-mydata$InstructorsGrade;
+CourseLevel<-factor(mydata$CourseLevel);
+
+mylogit <- glm(formula=Behavior ~ Gender+Semester+Grade+CourseLevel, family = "binomial");
+summary(mylogit)
