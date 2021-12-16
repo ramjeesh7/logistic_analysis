@@ -15,12 +15,12 @@ setwd("~/Data/Logit")
 #load package
 library(pastecs)
 
-#Upload the file: Logit_Analysis_Kedar_Fall2016.csv
+#Upload the file: Logit_Analysis_combined.csv
 mydata<-read.csv(file="Logit_Analysis_combined.csv",head=TRUE,sep=",")
 
-#Create an output file: Output_Logit_Analysis_Kedar_Fall2016.txt
+#Create an output file: Output_Logit_Analysis_combined.txt
 #Write the result in the txt output file:
-sink("Output_Logit_Analysis_Kedar_combined.txt",append=TRUE,split=TRUE)
+sink("Output_Logit_Analysis_combined.txt",append=TRUE,split=TRUE)
 #To write the file back to the console: sink()
 
 
